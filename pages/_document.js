@@ -8,16 +8,16 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html className="bg-lightMode">
+      <Html>
         <Head>
-          <link rel="icon" href="favicon.ico" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Bangers&display=swap"
             rel="stylesheet"
           />
         </Head>
-        <body>
+        <body className="bg-lightColor dark:text-white dark:bg-darkColor transition duration-200">
           <Main />
           <NextScript />
         </body>

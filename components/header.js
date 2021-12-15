@@ -2,13 +2,36 @@ import Link from "next/Link";
 import styles from "../styles/header.module.scss";
 
 export default function Header() {
+  const toggleDarkMode = (e) => {
+    e.preventDefault();
+
+    const docElement = document.documentElement;
+    const lightToggle = document.getElementById("toggleLightMode");
+    const darkToggle = document.getElementById("toggleDarkMode");
+
+    if (docElement.classList.contains("dark")) {
+      docElement.classList.toggle("dark");
+      darkToggle.classList.remove("animate-fadeOut");
+      darkToggle.classList.add("animate-fadeIn");
+      lightToggle.classList.remove("animate-fadeIn");
+      lightToggle.classList.add("animate-fadeOut");
+    } else {
+      docElement.classList.toggle("dark");
+      darkToggle.classList.add("animate-fadeOut");
+      darkToggle.classList.remove("animate-fadeIn");
+      lightToggle.classList.add("animate-fadeIn");
+      lightToggle.classList.remove("animate-fadeOut");
+      lightToggle.classList.remove("hidden");
+    }
+  };
+
   return (
-    <header className=" bg-header ">
-      <div className="navbar py-2 grid md:grid-cols-header max-w-screen-md m-auto items-center">
-        <div className="logo mr-10 font-bold font-mplus">
+    <header className="bg-lightHeader dark:bg-darkHeader">
+      <nav className="py-2 px-3 grid md:grid-cols-header max-w-screen-md m-auto items-center">
+        <div className="logo mr-10 tracking-wider text-lg font-bangers">
           <Link href="/">
             <a>
-              <img className="max-w-sm" src="logo.png" alt="logo" />
+              <h1>MAQBUL ARIF LATAMA</h1>
             </a>
           </Link>
         </div>
@@ -48,7 +71,9 @@ export default function Header() {
         <div>
           <button
             type="button"
-            className="bg-purple-600 p-3 rounded-md text-white hover:bg-purple-800 transition duration-200"
+            className="bg-purple-600 p-3 rounded-md text-white hover:bg-purple-800 transition duration-300 dark:animate-fadeOut relative left-10"
+            id="toggleDarkMode"
+            onClick={toggleDarkMode}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -63,8 +88,39 @@ export default function Header() {
               />
             </svg>
           </button>
+          <button
+            type="button"
+            className="bg-yellow-200 p-3 rounded-md text-black hover:bg-yellow-400 transition duration-300"
+            id="toggleLightMode"
+            onClick={toggleDarkMode}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <g
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                strokeWidth="2"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle cx="12" cy="12" r="5"></circle>
+                <path d="M12 1v2"></path>
+                <path d="M12 21v2"></path>
+                <path d="M4.22 4.22l1.42 1.42"></path>
+                <path d="M18.36 18.36l1.42 1.42"></path>
+                <path d="M1 12h2"></path>
+                <path d="M21 12h2"></path>
+                <path d="M4.22 19.78l1.42-1.42"></path>
+                <path d="M18.36 5.64l1.42-1.42"></path>
+              </g>
+            </svg>
+          </button>
         </div>
-      </div>
+      </nav>
     </header>
   );
 }
