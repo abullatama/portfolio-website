@@ -1,0 +1,42 @@
+.nav {
+  display: none;
+  @apply md:flex;
+  @apply gap-x-5;
+
+  a {
+    &::before {
+      content: "";
+      position: absolute;
+      top: 40px;
+      height: 0.15rem;
+      width: 0px;
+      @apply bg-black;
+      @apply rounded-md;
+      transition: all 250ms ease-in-out;
+    }
+
+    &:nth-child(1) {
+      &:hover {
+        &::before {
+          width: 43px;
+        }
+      }
+    }
+
+    &:nth-child(2) {
+      &:hover {
+        &::before {
+          width: 44px;
+        }
+      }
+    }
+
+    &:last-child {
+      &:hover {
+        &::before {
+          width: 69px;
+        }
+      }
+    }
+  }
+}

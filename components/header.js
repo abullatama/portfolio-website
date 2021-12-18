@@ -1,5 +1,5 @@
 import Link from "next/Link";
-import styles from "../styles/header.module.scss";
+import styles from "../styles/scss/header.module.scss";
 
 export default function Header() {
   const toggleDarkMode = (e) => {
@@ -27,7 +27,7 @@ export default function Header() {
 
   return (
     <header className="bg-lightHeader dark:bg-darkHeader">
-      <nav className="py-2 px-3 grid md:grid-cols-header max-w-screen-md m-auto items-center">
+      <navbar className="py-2 px-3 grid grid-cols-header-sm md:grid-cols-header-md max-w-screen-md m-auto items-center">
         <div className="logo mr-10 tracking-wider text-lg font-bangers">
           <Link href="/">
             <a>
@@ -37,13 +37,13 @@ export default function Header() {
         </div>
         <nav className={styles.nav}>
           <Link href="/about">
-            <a>About</a>
+            <a className="dark:before:bg-white">About</a>
           </Link>
           <Link href="/work">
-            <a>Works</a>
+            <a className="dark:before:bg-white">Works</a>
           </Link>
           <Link href="https://github.com/abullatama">
-            <a className="inline-flex items-center gap-1">
+            <a className="inline-flex items-center gap-1 dark:before:bg-white">
               <svg
                 stroke="currentColor"
                 fill="currentColor"
@@ -68,7 +68,8 @@ export default function Header() {
             </a>
           </Link>
         </nav>
-        <div>
+
+        <div className="dark-mode-toggle">
           <button
             type="button"
             className="bg-purple-600 p-3 rounded-md text-white hover:bg-purple-800 transition duration-300 dark:animate-fadeOut relative left-10"
@@ -120,7 +121,26 @@ export default function Header() {
             </svg>
           </button>
         </div>
-      </nav>
+
+        <div className="hamburger-button  md:hidden ml-2">
+          <button
+            type="button"
+            className="border border-gray-300/25 p-3 rounded-md"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                fill="currentColor"
+                d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </navbar>
     </header>
   );
 }

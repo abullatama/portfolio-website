@@ -5,7 +5,8 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        header: "auto 3fr auto",
+        "header-md": "auto 3fr auto",
+        "header-sm": "3fr auto auto",
       },
       fontFamily: {
         bangers: ["'Bangers'", "cursive"],
