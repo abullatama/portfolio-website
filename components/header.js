@@ -1,7 +1,22 @@
+import { useEffect } from "react";
 import Link from "next/Link";
 import styles from "../styles/scss/header.module.scss";
 
 export default function Header() {
+  useEffect(() => {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    // Whenever the user explicitly chooses to respect the OS preference
+    // localStorage.removeItem("theme");
+  });
+
   const toggleDarkMode = (e) => {
     e.preventDefault();
 
@@ -15,19 +30,21 @@ export default function Header() {
       darkToggle.classList.add("animate-fadeIn");
       lightToggle.classList.remove("animate-fadeIn");
       lightToggle.classList.add("animate-fadeOut");
+      darkToggle.classList.remove("hidden");
+      localStorage.theme = "light";
     } else {
       docElement.classList.toggle("dark");
+      lightToggle.classList.remove("animate-fadeOut");
+      lightToggle.classList.add("animate-fadeIn");
       darkToggle.classList.add("animate-fadeOut");
       darkToggle.classList.remove("animate-fadeIn");
-      lightToggle.classList.add("animate-fadeIn");
-      lightToggle.classList.remove("animate-fadeOut");
-      lightToggle.classList.remove("hidden");
+      localStorage.theme = "dark";
     }
   };
 
   return (
     <header className="bg-lightHeader dark:bg-darkHeader">
-      <navbar className="py-2 px-3 grid grid-cols-header-sm md:grid-cols-header-md max-w-screen-md m-auto items-center">
+      <div className="py-2 px-3 grid grid-cols-header-sm md:grid-cols-header-md max-w-screen-md m-auto items-center">
         <div className="logo mr-10 tracking-wider text-lg font-bangers">
           <Link href="/">
             <a>
@@ -37,10 +54,10 @@ export default function Header() {
         </div>
         <nav className={styles.nav}>
           <Link href="/about">
-            <a className="dark:before:bg-white">About</a>
+            <a className="dark:text-white">About</a>
           </Link>
           <Link href="/work">
-            <a className="dark:before:bg-white">Works</a>
+            <a className="dark:text-white">Works</a>
           </Link>
           <Link href="https://github.com/abullatama">
             <a className="inline-flex items-center gap-1 dark:before:bg-white">
@@ -69,10 +86,10 @@ export default function Header() {
           </Link>
         </nav>
 
-        <div className="dark-mode-toggle">
+        <div id="darkModeButton">
           <button
             type="button"
-            className="bg-purple-600 p-3 rounded-md text-white hover:bg-purple-800 transition duration-300 dark:animate-fadeOut relative left-10"
+            className="bg-purple-600 p-3 rounded-md text-white hover:bg-purple-800 transition duration-300 dark:hidden relative left-10"
             id="toggleDarkMode"
             onClick={toggleDarkMode}
           >
@@ -140,7 +157,7 @@ export default function Header() {
             </svg>
           </button>
         </div>
-      </navbar>
+      </div>
     </header>
   );
 }

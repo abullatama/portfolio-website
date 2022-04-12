@@ -4,6 +4,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      container: {
+        padding: {},
+      },
       gridTemplateColumns: {
         "header-md": "auto 3fr auto",
         "header-sm": "3fr auto auto",
@@ -19,8 +22,8 @@ module.exports = {
         ...theme("colors"),
         lightHeader: "rgba(255, 255, 255, 0.25)",
         darkHeader: "#20202380",
-        lightColor: "rgb(238, 245, 219)",
-        darkColor: "rgb(51, 55, 69)",
+        lightColor: "rgb(238, 245, 219)", //eef5db
+        darkColor: "rgb(51, 55, 69)", //333745
         lightModeButton: "rgb(254 215 170)",
         lightButtonHover: "rgb(251 191 36)",
       }),
