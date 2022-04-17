@@ -43,7 +43,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-lightHeader dark:bg-darkHeader">
+    <header className="bg-lightHeader dark:bg-darkHeader fixed top-0 left-0 right-0 backdrop-blur-[10px]">
       <div className="py-2 px-3 grid grid-cols-header-sm md:grid-cols-header-md max-w-screen-md m-auto items-center">
         <div className="logo mr-10 tracking-wider text-lg font-bangers">
           <Link href="/">

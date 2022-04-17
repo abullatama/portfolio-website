@@ -14,6 +14,7 @@ module.exports = {
       fontFamily: {
         bangers: ["'Bangers'", "cursive"],
         segoe: ["Segoe UI"],
+        mplus: ["'M PLUS Rounded 1c'", "sans-serif"],
       },
       letterSpacing: {
         tightest: "-0.0833331em",
